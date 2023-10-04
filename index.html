@@ -3,10 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <title>Library</title>
 </head>
 <body>
+    <div id="header">
+    <h1>library</h1>
+    </div>
+    <div id="books-container">
+     <button id="add-book-btn">+ Add Book</button>
+    
+   <dialog>
+    <form id="my-form" >
+        <h2>Add New Book</h2>
+        <input id="title" name="title" type="text" placeholder="Title" required>
+        <input id="author" name ="author" type="text" placeholder="Author" required>
+        <input id="pages" name="pages" type="number" placeholder="Pages" required>
+        <div id="label">
+        <label for="read">Have you read it?</label>
+        <input id="read" name="read" type="checkbox" required>
+        </div> 
+        <button id="submit" type="submit">Submit</button>
+    </form>
+   </dialog>
+</div>
 
     
     <script src="index.js">
