@@ -1,71 +1,44 @@
 
-const form = document.querySelector('dialog')
+const dialog = document.querySelector('dialog')
 const addBookbtn = document.getElementById('add-book-btn')
 const booksHolder = document.getElementById('books-holder')
+const titleInput = document.getElementById('title')
+const authorInput = document.getElementById('author')
+const pagesInput = document.getElementById('pages')
+
+const form = document.getElementById('my-form')
+let myLibrary = [];
 
 addBookbtn.addEventListener('click', function openForm() {
-  form.showModal()
+   dialog.showModal()
   
 })
 
-const myLibrary = [
-  {
-    title: 'harry potter',
-    author: 'jk rowlin',
-    pages: 200,
-    read: true
-  },
-  {
-    title: 'gk',
-    author: 'yoyo',
-    pages: 97,
-    read: false
-  },
-  {
-    title: 'yaya',
-    author: 'hello',
-    pages: 9,
-    read: true
-  },
-{
-  title: 'yaya',
-    author: 'hello',
-    pages: 9,
-    read: true
-},
-{
-  title: 'yaya',
-    author: 'hello',
-    pages: 9,
-    read: true
-},
-{
-  title: 'yaya',
-    author: 'hello',
-    pages: 9,
-    read: true
-},
-{
-  title: 'yaya',
-    author: 'hello',
-    pages: 9,
-    read: true
-}
+ form.addEventListener('submit', addBookToLibrary)
 
-];
 
-function Book() {
+function Book(title, author, pages) {
   // the constructor...
+  this.title = title,
+  this.author = author,
+  this.pages = pages
 }
 
 
 
-function addBookToLibrary() {
+function addBookToLibrary(event) {
   // do stuff here
-  
+  event.preventDefault()
+  myLibrary.push(new Book(titleInput.value, authorInput.value, Number(pagesInput.value)))
+  render()
+  titleInput.value = ''
+  authorInput.value = ''
+  pagesInput.value = ''
+  dialog.close()
 }
 
 function render() {
+  booksHolder.innerHTML = ''
   for(let i = 0; i < myLibrary.length; i++){
   booksHolder.innerHTML += `
   <div>
@@ -78,4 +51,3 @@ function render() {
   `
   }
 }
-render()
