@@ -1,6 +1,7 @@
 :root {
    --grey: #f0eef1;
    --green: #9fff9c;
+   --light--red: #ff7070;
 }
 
 html,body {
@@ -41,7 +42,7 @@ margin-bottom: 3px;
 #add-book-btn {
     font-family: 'Open Sans', sans-serif;
     margin: 20px auto;
-    background-color: #f0eef1;
+    background-color: var(--grey);
     border: none;
     border-radius: 8px;
     font-size: 24px;
@@ -153,7 +154,11 @@ input:focus{
     background-color: var(--green);
 }
 
-.read-btn:hover, .remove-btn:hover {
+.notread-btn {
+    background-color: var(--light--red);
+}
+
+.read-btn:hover, .remove-btn:hover, .notread-btn:hover {
     filter: brightness(90%);
     cursor: pointer;
 }
