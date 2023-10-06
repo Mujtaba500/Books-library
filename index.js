@@ -43,24 +43,29 @@ function addBookToLibrary(event) {
   pagesInput.value = ''
   readCheck.checked = false
   dialog.close()
-  removeBook()
 }
 
 function removeBook(){
-  const removeBtns = Array.from(document.querySelectorAll('.remove-btn'))
+  let removeBtns = Array.from(document.querySelectorAll('.remove-btn'))
   for(let i = 0; i < removeBtns.length; i++){
-  removeBtns[i].addEventListener('click' , function checkId(e){
+  removeBtns[i].addEventListener('click' , function remove(e){
        let btnId = e.target.id
        for(let j = 0; j < myLibrary.length; j++){
         if(btnId == myLibrary[j].id){
           myLibrary.splice(j, 1)
         }
        }
+       for(let k =0; k < myLibrary.length; k++){
+        myLibrary[k].id = k
+       }
        render()
+
   })
 }
 
 }
+
+
 
 function render() {
   booksHolder.innerHTML = ''
@@ -89,6 +94,5 @@ function render() {
   `
   }
 }
-removeBook()
-    }
-
+ removeBook()
+  }
