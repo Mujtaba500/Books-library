@@ -45,11 +45,9 @@ function addBookToLibrary(event) {
   dialog.close()
 }
 
-function removeBook(){
-  let removeBtns = Array.from(document.querySelectorAll('.remove-btn'))
-  for(let i = 0; i < removeBtns.length; i++){
-  removeBtns[i].addEventListener('click' , function remove(e){
+  booksHolder.addEventListener('click' , function remove(e){
        let btnId = e.target.id
+       console.log(btnId);
        for(let j = 0; j < myLibrary.length; j++){
         if(btnId == myLibrary[j].id){
           myLibrary.splice(j, 1)
@@ -61,10 +59,6 @@ function removeBook(){
        render()
 
   })
-}
-
-}
-
 
 
 function render() {
@@ -94,5 +88,6 @@ function render() {
   `
   }
 }
- removeBook()
+ 
   }
+
