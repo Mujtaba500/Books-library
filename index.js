@@ -46,10 +46,9 @@ function addBookToLibrary(event) {
 }
 
   booksHolder.addEventListener('click' , function remove(e){
-       let btnId = e.target.id
-       console.log(btnId);
+       if(e.target.id !== ''){
        for(let j = 0; j < myLibrary.length; j++){
-        if(btnId == myLibrary[j].id){
+        if(e.target.id == myLibrary[j].id){
           myLibrary.splice(j, 1)
         }
        }
@@ -57,7 +56,7 @@ function addBookToLibrary(event) {
         myLibrary[k].id = k
        }
        render()
-
+      }
   })
 
 
