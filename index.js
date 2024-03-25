@@ -6,9 +6,15 @@ const titleInput = document.getElementById('title')
 const authorInput = document.getElementById('author')
 const pagesInput = document.getElementById('pages')
 const readCheck = document.getElementById('read')
+const booksFromLocalStorage = JSON.parse( localStorage.getItem("myBooks") )
 
 const form = document.getElementById('my-form')
 let myLibrary = [];
+
+if(booksFromLocalStorage){
+  myLibrary = booksFromLocalStorage
+  render()
+}
 
 addBookbtn.addEventListener('click', function openForm() {
    dialog.showModal()
@@ -27,7 +33,9 @@ function Book(title, author, pages, read, id) {
   this.id = id
 }
 
-
+function addBooksToLocalStorage()  {
+  localStorage.setItem("myBooks", JSON.stringify(myLibrary) )
+}
 
 function addBookToLibrary(event) {
   // do stuff here
@@ -43,6 +51,7 @@ function addBookToLibrary(event) {
   pagesInput.value = ''
   readCheck.checked = false
   dialog.close()
+  addBooksToLocalStorage()
 }
 
   booksHolder.addEventListener('click' , function remove(e){
@@ -55,18 +64,21 @@ function addBookToLibrary(event) {
        for(let k =0; k < myLibrary.length; k++){
         myLibrary[k].id = k
        }
+       addBooksToLocalStorage()
        render()
       }
       if(e.target.className === 'read-btn'){
         myLibrary[e.target.id].read = false
+        addBooksToLocalStorage()
         render()
       }
       if(e.target.className === 'notread-btn'){
         myLibrary[e.target.id].read = true
+        addBooksToLocalStorage()
         render()
       }
   })
-
+ 
 
 function render() {
   booksHolder.innerHTML = ''
