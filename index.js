@@ -46,7 +46,7 @@ function addBookToLibrary(event) {
 }
 
   booksHolder.addEventListener('click' , function remove(e){
-       if(e.target.id !== ''){
+       if(e.target.className === 'remove-btn'){
        for(let j = 0; j < myLibrary.length; j++){
         if(e.target.id == myLibrary[j].id){
           myLibrary.splice(j, 1)
@@ -56,6 +56,14 @@ function addBookToLibrary(event) {
         myLibrary[k].id = k
        }
        render()
+      }
+      if(e.target.className === 'read-btn'){
+        myLibrary[e.target.id].read = false
+        render()
+      }
+      if(e.target.className === 'notread-btn'){
+        myLibrary[e.target.id].read = true
+        render()
       }
   })
 
@@ -69,7 +77,7 @@ function render() {
    <p>${myLibrary[i].title}</p>
    <p>${myLibrary[i].author}</p>
    <p>${myLibrary[i].pages} pages</p> 
-   <button class="read-btn">Read</button>
+   <button id='${i}' class="read-btn">Read</button>
    <button id='${i}' class="remove-btn">Remove</button>
   </div>
   `
@@ -81,7 +89,7 @@ function render() {
    <p>${myLibrary[i].title}</p>
    <p>${myLibrary[i].author}</p>
    <p>${myLibrary[i].pages} pages</p> 
-   <button class="notread-btn">Not Read</button>
+   <button id='${i}' class="notread-btn">Not Read</button>
    <button id='${i}' class="remove-btn">Remove</button>
   </div>
   `
